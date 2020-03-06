@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+// SERVICES
+import userService from "./services/userService";
 
 function App() {
+  const [users, setusers] = useState(null);
+
+  useEffect(() => {
+    if (!users) {
+      getUsers();
+    }
+  });
+
+  const getUsers = async () => {
+    let res = await userService.getAll();
+    console.log(res);
+    setusers(res);
+  };
+
+  const renderUser = user => {
+    return (
+      <li key={user.id} className="list__item user">
+        <a className="user__name" href="/">
+          {user.first_name + " " + user.last_name}
+        </a>
+        <p className="user__title">{user.title}</p>
+        <p className="user__age">Age: {user.age}</p>
+      </li>
+    );
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul className="list">
+        {users && users.length > 0 ? (
+          users.map(user => renderUser(user))
+        ) : (
+          <p>Loading...</p>
+        )}
+      </ul>
     </div>
   );
 }
