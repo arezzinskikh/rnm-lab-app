@@ -32,11 +32,14 @@ function App() {
 
   return (
     <div className="App">
+      
       <ul className="list">
         {users && users.length > 0 ? (
           users.map(user => renderUser(user))
         ) : (
-          <p>Loading...</p>
+          <li>
+            <p>Loading...</p>
+          </li>
         )}
       </ul>
     </div>
