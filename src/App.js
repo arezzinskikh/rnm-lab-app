@@ -1,49 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment, Component } from "react";
+import "./bootstrap/dist/css/bootstrap.min.css";
+
+// or less ideally
+import { Button, Nav, NavItem } from "react-bootstrap";
 
 // SERVICES
 import userService from "./services/userService";
 
-function App() {
-  const [users, setusers] = useState(null);
-
-  useEffect(() => {
-    if (!users) {
-      getUsers();
-    }
-  });
-
-  const getUsers = async () => {
-    let res = await userService.getAll();
-    console.log(res);
-    setusers(res);
-  };
-
-  const renderUser = user => {
-    return (
-      <li key={user.id} className="list__item user">
-        <a className="user__name" href="/">
-          {user.first_name + " " + user.last_name}
-        </a>
-        <p className="user__title">{user.title}</p>
-        <p className="user__age">Age: {user.age}</p>
-      </li>
-    );
-  };
-
-  return (
-    <div className="App">
-      
-      <ul className="list">
-        {users && users.length > 0 ? (
-          users.map(user => renderUser(user))
-        ) : (
-          <li>
-            <p>Loading...</p>
-          </li>
-        )}
-      </ul>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return <div>Hello</div>;
+  }
 }
 
 export default App;
