@@ -1,16 +1,12 @@
-import React, { useState, useEffect, Fragment, Component } from "react";
-import "./bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import Chat from "./components/Chat/Chat";
 
-// or less ideally
-import { Button, Nav, NavItem } from "react-bootstrap";
-
-// SERVICES
-import userService from "./services/userService";
-
-class App extends Component {
-  render() {
-    return <div>Hello</div>;
-  }
-}
+const App = () => {
+  return (
+    <div>
+      <Chat></Chat>
+    </div>
+  );
+};
 
 export default App;
